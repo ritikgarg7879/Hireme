@@ -15,6 +15,7 @@ app.use(session({
     }
 }));
 
+
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,14 +53,43 @@ app.post("/signup", async (req, res) => {
         companylocation
     };
 
-    db.collection('company').insertOne(data, (err, collection) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send("Error in signup");
-        }
+    try {
+        await db.collection('company').insertOne(data);
         console.log("Record Inserted Successfully");
         return res.redirect('/login');
-    });
+    } catch (error) {
+        console.error("Error in signup:", error);
+        return res.status(500).send("Error in signup");
+    }
+});
+
+app.post("/postjob", async (req, res) => {
+    const { position, cname, location, category, tags, min, max, desc, url, gmail, caddress, linkedin, number } = req.body;
+
+    const data1 = {
+        position,
+        cname,
+        location,
+        category,
+        tags,
+        min,
+        max,
+        desc,
+        url,
+        gmail,
+        caddress,
+        linkedin,
+        number
+    };
+
+    try {
+        await db.collection('jobdetail').insertOne(data1);
+        console.log("Record Inserted Successfully");
+        res.send('<script>alert("Job posted successfully!"); window.location="/postjob";</script>');
+    } catch (error) {
+        console.error("Error in posting job:", error);
+        return res.status(500).send("Error in posting job");
+    }
 });
 
 app.post("/login", async (req, res) => {
@@ -68,16 +98,29 @@ app.post("/login", async (req, res) => {
 
         const company = await db.collection('company').findOne({ companyemail: companyemail });
         if (!company || company.companypassword !== companypassword) {
-            return res.status(401).send('Invalid email or password');
+            return res.status(401).send('<script>alert("Invalid email or password!"); window.location="/login";</script>');
         }
 
         req.session.company = company;
+        req.session.save();
+        req.session.createdAt = new Date().getTime(); // Set session creation time
         console.log("Session started for:", companyemail);
         return res.status(201).redirect('/postjob');
     } catch (error) {
-        console.error(error);
+        console.error("Internal Server Error:", error);
         return res.status(500).send("Internal Server Error");
     }
+});
+
+app.post("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error destroying session:", err);
+            return res.status(500).send("Error in logging out");
+        }
+        console.log("Session ended");
+        return res.redirect('/landing.html');
+    });
 });
 
 app.get("/", (req, res) => {
@@ -91,29 +134,37 @@ app.get("/login", (req, res) => {
     res.redirect("/login.html");
 });
 
-app.get("/postjob", (req, res) => {
-    res.redirect("/postjob.html");
+app.get("/postjob", validateAuthToken, (req, res) => {
+    if (req.session.company) {
+        const currentTime = new Date().getTime();
+        const sessionTime = req.session.createdAt || currentTime;
+        const sessionDuration = 10000; // 10 seconds in milliseconds
+
+        if (currentTime - sessionTime > sessionDuration) {
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error("Error destroying session:", err);
+                    return res.status(500).send("Error destroying session");
+                }
+                console.log("Session automatically ended after 10 seconds");
+                return res.redirect('/login'); // Redirect to login page after session is destroyed
+            });
+        } else {
+            req.session.createdAt = currentTime; // Update session creation time
+            return res.redirect("/postjob.html");
+        }
+    } else {
+        return res.redirect('/login');
+    }
 });
+
 
 app.get("/signup", (req, res) => {
     res.redirect('/signup.html');
 });
 
-app.get("/homepage", validateAuthToken, (req, res) => {
+app.get("/homepage",(req, res) => {
     res.sendFile(__dirname + '/homepage.html');
-});
-
-
-app.use((req, res, next) => {
-    if (!req.session.company) {
-        console.log("Session ended");
-        req.session.destroy((err) => {
-            if (err) {
-                console.error(err);
-            }
-        });
-    }
-    next();
 });
 
 app.listen(3000, () => {
