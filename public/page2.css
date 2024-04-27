@@ -1,17 +1,15 @@
-button:hover {
+button:hover{
     cursor: pointer;
-}
-
-a:hover {
+  }
+  a:hover{
     cursor: pointer;
-}
-
-#navbar {
+  }
+  
+  #navbar{
     height: 100px;
     background-color: #000;
-}
-
-#logo {
+  }
+  #logo{
     color: #fff;
     font-family: Poppins;
     font-size: 35px;
@@ -21,9 +19,8 @@ a:hover {
     margin-top: 23px;
     margin-left: 170px;
     position: fixed;
-}
-
-#find-btn {
+  }
+  #find-btn{
     margin-top: 30px;
     margin-left: 1124px;
     position: fixed;
@@ -40,9 +37,9 @@ a:hover {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-}
-
-#employ-btn {
+  }
+  
+  #employ-btn{
     margin-top: 30px;
     margin-left: 1256px;
     position: fixed;
@@ -59,23 +56,22 @@ a:hover {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-}
-
-#container {
+  }
+  #container{
     margin-top: 30px;
     margin-left: 10%;
     margin-right: 10%;
     display: grid;
     grid-template-columns: 2fr 1fr;
     column-gap: 2%;
-}
-
-#job-header {
+  }
+  
+  #job-header{
     display: grid;
     grid-template-columns: 117px 1fr;
-}
-
-#apply-btn {
+  }
+  
+  #apply-btn{
     display: flex;
     width: 296px;
     height: 50px;
@@ -95,9 +91,9 @@ a:hover {
     line-height: normal;
     margin-top: 100px;
     border: 0;
-}
-
-#info-card {
+  }
+  
+  #info-card{
     display: flex;
     width: 260px;
     padding: 25px 18px;
@@ -108,9 +104,9 @@ a:hover {
     background: #F7F6FF;
     box-shadow: 0px 1px 25px 4px rgba(0, 0, 0, 0.10);
     margin-top: 23px;
-}
-
-.info-title {
+  }
+  
+  .info-title{
     color: #000;
     font-family: "Inter", sans-serif;
     font-size: 14px;
@@ -118,9 +114,8 @@ a:hover {
     font-weight: 500;
     line-height: normal;
     margin: 0;
-}
-
-.info-des {
+  }
+  .info-des{
     color: #000;
     font-family: "Inter", sans-serif;
     font-size: 12px;
@@ -128,14 +123,14 @@ a:hover {
     font-weight: 400;
     line-height: normal;
     margin-top: 6px;
-}
-
-#job-category {
+  }
+  #job-category{
     margin: 0;
     padding: 0;
-}
-
-#job-position {
+  }
+  
+  
+  #job-position{
     color: #000;
     font-family: Inter;
     font-size: 30px;
@@ -144,9 +139,9 @@ a:hover {
     line-height: normal;
     margin-bottom: 0;
     margin-top: 0;
-}
-
-#company-name {
+  }
+  
+  #company-name{
     color: #000;
     font-family: Inter;
     font-size: 22px;
@@ -155,74 +150,66 @@ a:hover {
     line-height: normal;
     margin-top: 4px;
     margin-bottom: 14px;
-}
-
-#tags {
+  }
+  #tags{
     color: #000;
     font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-}
-
-.tag {
+  }
+  .tag{
     border: 1.8px;
     border-style: solid;
     border-color: #2341D5;
     border-radius: 4px;
     padding: 3px;
     margin-right: 10px;
-}
-
-#job-description {
+  }
+  
+  #job-description{
     font-family: Inter;
-}
-
-#description-content {
+  }
+  #description-content{
     color: #000;
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
-
-#image-holder {
+  }
+  
+  #image-holder{
     width: 100px;
     height: 100px;
     flex-shrink: 0;
     border-radius: 12px;
     background: #2341D5;
     margin-right: 17px;
-}
-
-#job-heading {
+  }
+  #job-heading{
     gap: 0;
-}
-
-h2 {
+  }
+  h2{
     color: #000;
     font-family: Inter;
     font-size: 22px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-}
-
-#footer {
+  }
+  #footer{
     width: 100%;
     background-color: #000;
     height: 80px;
     margin-top: 20px;
     margin-bottom: 0;
-}
-
-body {
+  }
+  body{
     margin: 0;
-}
-
-#email {
+  }
+  #email{
     color: #FFF;
     font-family: Inter;
     font-size: 16px;
@@ -231,36 +218,35 @@ body {
     line-height: normal;
     text-align: center;
     padding-top: 40px;
-}
-
-@media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
     #container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; 
         margin-left: 5%;
         margin-right: 5%;
     }
-
+  
     #apply-btn {
-        width: 100%;
-        margin-top: 20px;
+        width: 100%; 
+        margin-top: 20px; 
     }
-
+  
     #info-card {
-        width: 100%;
-        margin-top: 20px;
+        width: 100%; 
+        margin-top: 20px; 
         margin-right: 20px;
     }
-
+  
     #job-header {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; 
     }
-
+  
     #image-holder {
-        margin-right: 0;
-        margin-bottom: 10px;
+        margin-right: 0; 
+        margin-bottom: 10px; 
     }
-
-    #apply {
+    #apply{
         width: 100%;
     }
-}
+  }
