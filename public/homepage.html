@@ -16,10 +16,10 @@
 
 <body>
     <nav class="navbar navbar-dark bg-dark" style="height: 80px;">
-        <div class="container-fluid"> <a class="navbar-brand"
+        <div class="container-fluid"> <a href="landing.html" class="navbar-brand"
                 style="margin-left: 80px; height: 100%; font-weight: bold; font-family:Poppins; font-size: 25px;">HireMe</a>
-            <form class="d-flex"> <button type="button" class="btn btn-light me-md-4">Find a job</button> <button
-                    type="button" class="btn btn-primary">Employers</button> </form>
+            <form class="d-flex"> <button type="button" class="btn btn-light me-md-4">Find Company</button> <button
+                    type="button" class="btn btn-primary" id="employ-btn">Login</button> </form>
         </div>
     </nav>
     <section class="row mt-5">
@@ -153,5 +153,12 @@
         </div>
     </div>
 </body>
+<script>
+    const signupButton = document.getElementById('employ-btn');
+
+signupButton.addEventListener('click', () => {
+    window.location.href = 'login.html'; 
+});
+</script>
 
 </html>

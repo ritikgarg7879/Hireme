@@ -11,17 +11,15 @@
 
 </head>
 <body>
-    <div id="navbar">
-        <span>
-            <p id="logo">HireMe</p>
-        </span>
-        <span>
-            <button id="find-btn">Find Company</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </span>
-        <span>
-            <button id="employ-btn">Signup</button>
-        </span>
-    </div>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="landing.html">HireMe</a>
+        </div>
+        <div class="nav-buttons">
+            <button>Find Company</button>
+            <button id="signup">Signup</button>
+        </div>
+    </nav>
     <div>
         <p id="login-title">Login</p>
         <form id="login-form" method="post" action="/login">
@@ -37,7 +35,7 @@
 </body>
             <script>
       
-        const signupButton = document.getElementById('employ-btn');
+        const signupButton = document.getElementById('signup');
 
         signupButton.addEventListener('click', () => {
             window.location.href = 'signup.html'; 

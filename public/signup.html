@@ -157,15 +157,15 @@
   </style>
 </head>
 <body>
-  <div id="navbar">
-    <span>
-      <p id="logo">HireMe</p>
-    </span>
-    <span>
-      <button id="find-btn">Find Company</button>
-      <button id="employ-btn">Login</button>
-    </span>
-  </div>
+  <nav class="navbar">
+    <div class="logo">
+        <a href="landing.html">HireMe</a>
+    </div>
+    <div class="nav-buttons">
+        <button>Find Company</button>
+        <button id="login">Login</button>
+    </div>
+</nav>
   <div>
     <p id="login-title">Create Account</p>
     <form id="login-form" onsubmit="return validateForm()" method="post" action="/signup">
@@ -201,7 +201,7 @@
       }
       return true;
     }
-    const signupButton = document.getElementById('employ-btn');
+    const signupButton = document.getElementById('login');
 
         signupButton.addEventListener('click', () => {
             window.location.href = 'login.html'; 
