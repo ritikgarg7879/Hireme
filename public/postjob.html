@@ -312,6 +312,7 @@
         $('#job').submit(function (e) {
             e.preventDefault();
             var errorMessages = [];
+            $('.error-message').remove();
             if ($('#position').val() == '') {
                 errorMessages.push('Position field is required.');
                 $('#position').after('<span class="error-message">Position field is required.</span>');
@@ -402,6 +403,13 @@
             } else {
                 $(this).unbind('submit').submit();
             }
+            if (errorMessages.length > 0) {
+      var errorMessageString = errorMessages.join('<br>');
+      $('.error-container').remove(); // Remove any existing error container
+      $(this).before('<div class="error-container">' + errorMessageString + '</div>');
+    } else {
+      $(this).unbind('submit').submit();
+    }
         });
     });
 const logoutButton = document.getElementById('logout');
