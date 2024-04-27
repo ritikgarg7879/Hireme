@@ -114,3 +114,16 @@ button:hover{
     line-height: normal;
     border: 0;
   }
+
+  @media only screen and (max-width: 600px) {
+    #login-title,
+    #login-form {
+      margin-left: 20px; 
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: calc(100% - 30px); 
+    }
+  }
