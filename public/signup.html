@@ -163,10 +163,8 @@
     </span>
     <span>
       <button id="find-btn">Find Company</button>
+      <button id="employ-btn">Login</button>
     </span>
-    <span>
-            <button id="employ-btn">Login</button>
-        </span>
   </div>
   <div>
     <p id="login-title">Create Account</p>
@@ -203,6 +201,11 @@
       }
       return true;
     }
+    const signupButton = document.getElementById('employ-btn');
+
+        signupButton.addEventListener('click', () => {
+            window.location.href = 'login.html'; 
+        });
   </script>
 </body>
 </html>
