@@ -22,42 +22,55 @@
       color: red;
     }
     
-    #navbar {
-      height: 100px;
-      background-color: #000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px; 
+    .navbar {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo a {
+    color: #FFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    margin-top: 23px;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.nav-buttons button {
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    background: #2341D5;
+    color: #FFF;
+}
+
+/* Media Query for Mobile Devices */
+@media screen and (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    #logo {
-      color: #fff;
-      font-family: Poppins;
-      font-size: 35px;
-      font-weight: 700;
-      line-height: normal;
+    .nav-buttons {
+        margin-top: 10px;
     }
 
-    #find-btn,
-    #employ-btn {
-      padding: 11px 22px;
-      border-radius: 8px;
-      font-family: Inter;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: normal;
+    .nav-buttons button {
+        margin-left: 0;
+        margin-top: 5px;
     }
-
-    #find-btn {
-      background: #fff;
-      color: #000;
-    }
-
-    #employ-btn {
-      background: #2341d5;
-      color: #fff;
-    }
+}
 
     #login-title {
       margin-top: 30px;
