@@ -1,0 +1,100 @@
+body {
+    background-image: url("bg.svg")
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+#logo {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 23px;
+    margin-left: 170px;
+    position: fixed;
+}
+
+#find-btn {
+    margin-top: 30px;
+    margin-left: 1124px;
+    position: fixed;
+    padding: 11px 22px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: #FFF;
+    border: 0;
+    color: #000;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+#employ-btn {
+    margin-top: 30px;
+    margin-left: 1256px;
+    position: fixed;
+    padding: 11px 22px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: #2341D5;
+    border: 0;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+#title1 {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 242px;
+    margin-left: 260px;
+    position: fixed;
+}
+
+#title2 {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    margin-top: 324px;
+    margin-left: 260px;
+    position: fixed;
+    width: 540px;
+}
+
+#browse {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    text-decoration-line: underline;
+    margin-top: 469px;
+    margin-left: 260px;
+    position: fixed;
+}
