@@ -66,6 +66,44 @@
             display: inline-block;
             margin-top: 5px;
         }
+        #find-btn,
+    #logout{
+      padding: 11px 22px;
+      border-radius: 8px;
+      font-family: Inter;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: normal;
+    }
+    #navbar {
+      height: 100px;
+      background-color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px; /* Add padding for better spacing */
+    }
+    button:hover {
+      cursor: pointer;
+    }
+    #logo {
+      color: #fff;
+      font-family: Poppins;
+      font-size: 35px;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    #find-btn {
+      background: #fff;
+      color: #000;
+    }
+
+    #logout{
+      background: #2341d5;
+      color: #fff;
+    }
+
 
         .error-container {
             border: 1px solid red;
@@ -84,6 +122,27 @@
                 height: 120px;
             }
         }
+        @media only screen and (max-width: 800px) {
+      #logo {
+        font-size: 28px; /* Decrease font size for smaller screens */
+      }
+    }
+        @media only screen and (max-width: 600px) {
+      #navbar {
+        height: auto; /* Allow navbar to expand vertically */
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+      }
+    }
+      #logo {
+        margin-bottom: 10px; /* Add space below logo */
+      }
+
+      #find-btn,
+      #employ-btn {
+        margin-top: 10px; /* Add space between buttons */
+        margin-left: 20px; /* Keep buttons together */
+      }
 
         @media (max-width: 576px) {
             .container {
@@ -101,24 +160,24 @@
             #footer {
                 height: 150px;
             }
+            
         }
+        
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid"> <a class="navbar-brand"
-                style="margin-left: 80px; font-weight: bold; font-family:Poppins; font-size: 25px;">HireMe</a> <a
-                class="manage jobs" href=”managejob.html”
-                style="display: inline-block; text-decoration: none; color: white;">Manage jobs</a> <a
-                class="manage jobs" href=”postjob.html”
-                style="display: inline-block; text-decoration: none; color: white; ">Post a job</a>
-            <form class="d-flex"> <button type="button" class="btn btn-primary">Account</button> </form>
-        </div>
-    </nav> <br><br>
+    <div id="navbar">
+        <span>
+          <p id="logo">HireMe</p>
+        </span>
+        <span>
+          <button id="logout">Logout</button>
+        </span>
+      </div> <br><br>
     <h3 align="center">Post a job</h3>
     <table align="center">
-        <form method="post" action="" id="job">
+        <form method="post" action="/postjob" id="job">
             <tr>
                 <td colspan="3">Job Details</td>
             </tr>
@@ -133,28 +192,30 @@
                 <td>Company name</td>
             </tr>
             <tr>
-                <td><input type="text" size="40" placeholder="Backend developer" id="position"></td>
+                <td><input type="text" size="40" placeholder="Backend developer" id="position" name="position"></td>
                 <td>&nbsp;&nbsp;</td>
-                <td><input type="text" size="40" placeholder="Hireme" id="cname"></td>
+                <td><input type="text" size="40" placeholder="Hireme" id="cname" name="cname"></td>
             </tr>
             <tr>
                 <td colspan="3">Location(s)</td>
             </tr>
             <tr>
-                <td colspan="3"><input type="text" style="width: 100%;" size="80" placeholder="Anywhere" id="location">
+                <td colspan="3"><input type="text" style="width: 100%;" size="80" placeholder="Anywhere" id="location"
+                        name="location">
                 </td>
             </tr>
             <tr>
                 <td colspan="3">Job Category</td>
             </tr>
             <tr>
-                <td colspan="3"><input type="text" size="80" placeholder="Job Category" id="category"></td>
+                <td colspan="3"><input type="text" size="80" placeholder="Job Category" id="category" name="category">
+                </td>
             </tr>
             <tr>
                 <td colspan="3">Industry tags</td>
             </tr>
             <tr>
-                <td colspan="3"><input type="text" size="80" placeholder="e.g.Python" id="tags"></td>
+                <td colspan="3"><input type="text" size="80" placeholder="e.g.Python" id="tags" name="tags"></td>
             </tr>
             <tr>
                 <td>Minimum Salary in INR</td>
@@ -162,28 +223,31 @@
                 <td>Maximum Salary in INR</td>
             </tr>
             <tr>
-                <td><input type="number" placeholder="500000" id="min"></td>
+                <td><input type="number" placeholder="500000" id="min" name="min"></td>
                 <td>&nbsp;&nbsp;</td>
-                <td><input type="number" placeholder="1000000" id="max"></td>
+                <td><input type="number" placeholder="1000000" id="max" name="max"></td>
             </tr>
             <tr>
                 <td colspan="3">Job Description</td>
             </tr>
             <tr>
-                <td colspan="3"><textarea rows="5" placeholder="Seeking experienced manager..." id="desc"></textarea>
+                <td colspan="3"><textarea rows="5" placeholder="Seeking experienced manager..." id="desc"
+                        name="desc"></textarea>
                 </td>
             </tr>
             <tr>
                 <td colspan="3">Application url</td>
             </tr>
             <tr>
-                <td colspan="3"><input type="url" size="80" placeholder="https/mycompany/carrers.com" id="url"></td>
+                <td colspan="3"><input type="url" size="80" placeholder="https/mycompany/carrers.com" id="url"
+                        name="url"></td>
             </tr>
             <tr>
                 <td colspan="3">Email</td>
             </tr>
             <tr>
-                <td colspan="3"><input type="email" size="80" placeholder="myemail@gmail.com" id="email"></td>
+                <td colspan="3"><input type="email" size="80" placeholder="myemail@gmail.com" id="email" name="gmail">
+                </td>
             </tr>
             <tr>
                 <td colspan="3"><br><br>Company Details</td>
@@ -194,16 +258,10 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3">Upload company logo</td>
-            </tr>
-            <tr>
-                <td colspan="2"> <input type="file" accept="image/*" name="logoFile" id="logoFile"> </td>
-            </tr>
-            <tr>
                 <td colspan="3">Company Address</td>
             </tr>
             <tr>
-                <td colspan="3"><input type="text" placeholder="Anywhere" id="caddress"></td>
+                <td colspan="3"><input type="text" placeholder="Anywhere" id="caddress" name="caddress"></td>
             </tr>
             <tr>
                 <td>Company Linkedin</td>
@@ -211,9 +269,9 @@
                 <td>Campany contact number</td>
             </tr>
             <tr>
-                <td><input type="url" placeholder="Anywhere" id="linkedin"></td>
+                <td><input type="url" placeholder="Anywhere" id="linkedin" name="linkedin"></td>
                 <td>&nbsp;&nbsp;</td>
-                <td><input type="number" placeholder="1234567890" id="number"></td>
+                <td><input type="number" placeholder="1234567890" id="number" name="number"></td>
             </tr>
             <tr>
                 <td colspan="3" style="text-align: center; padding-top: 10px;"><input type="submit"
@@ -223,14 +281,122 @@
     </table> <br><br><br>
     <div id="footer"></div>
 </body>
-<script> $(document).ready(function () {
+<script>
+    $(document).ready(function () {
         $('#job').submit(function (e) {
-            e.preventDefault(); var errorMessages = []; if ($('#position').val() == '') { errorMessages.push('Position field is required.'); $('#position').after('<span class="error-message">Position field is required.</span>'); $('#position').addClass('error'); } if ($('#cname').val() == '') { errorMessages.push('Company name field is required.'); $('#cname').after('<span class="error-message">Company name field is required.</span>'); $('#cname').addClass('error'); } if ($('#location').val() == '') { errorMessages.push('Location field is required.'); $('#location').after('<span class="error-message">Location field is required.</span>'); $('#location').addClass('error'); } if ($('#category').val() == '') { errorMessages.push('Job category field is required.'); $('#category').after('<span class="error-message">Job category field is required.</span>'); $('#category').addClass('error'); } if ($('#tags').val() == '') { errorMessages.push('Industry tags field is required.'); $('#tags').after('<span class="error-message">Industry tags field is required.</span>'); $('#tags').addClass('error'); } if ($('#min').val() == '') { errorMessages.push('Minimum salary field is required.'); $('#min').after('<span class="error-message">Minimum salary field is required.</span>'); $('#min').addClass('error'); } else if (isNaN($('#min').val())) {
-                errorMessages.push('Minimum salary should be a number.'); $('#min').after('<span class="error-message">Minimum salary should be a number.</span>'); $('#min').addClass('error');
-            } if ($('#max').val() == '') { errorMessages.push('Maximum salary field is required.'); $('#max').after('<span class="error-message">Maximum salary field is required.</span>'); $('#max').addClass('error'); } else if (isNaN($('#max').val())) { errorMessages.push('Maximum salary should be a number.'); $('#max').after('<span class="error-message">Maximum salary should be a number.</span>'); $('#max').addClass('error'); } else if ($('#max').val() < $('#min').val()) { errorMessages.push('Maximum salary should be greater than or equal to minimum salary.'); $('#max').after('<span class="error-message">Maximum salary should be greater than or equal to minimum salary.</span>'); $('#max').addClass('error'); } if ($('#desc').val() == '') { errorMessages.push('Job description field is required.'); $('#desc').after('<span class="error-message">Job description field is required.</span>'); $('#desc').addClass('error'); } if ($('#url').val() == '') { errorMessages.push('Application URL field is required.'); $('#url').after('<span class="error-message">Application URL field is required.</span>'); $('#url').addClass('error'); } if ($('#email').val() == '') { errorMessages.push('Email field is required.'); $('#email').after('<span class="error-message">Email field is required.</span>'); $('#email').addClass('error'); } else if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test($('#email').val())) {
-                errorMessages.push('Please enter a valid email address.'); $('#email').after('<span class="error-message">Please enter a valid email address.</span>'); $('#email').addClass('error');
-            } if ($('#caddress').val() == '') { errorMessages.push('Company address field is required.'); $('#caddress').after('<span class="error-message">Company address field is required.</span>'); $('#caddress').addClass('error'); } if ($('#linkedin').val() == '') { errorMessages.push('Company LinkedIn field is required.'); $('#linkedin').after('<span class="error-message">Company LinkedIn field is required.</span>'); $('#linkedin').addClass('error'); } if ($('#number').val() == '') { errorMessages.push('Company contact number field is required.'); $('#number').after('<span class="error-message">Company contact number field is required.</span>'); $('#number').addClass('error'); } else if ($('#number').val().length != 10 || isNaN($('#number').val())) { errorMessages.push('Company contact number should be exactly 10 digits.'); $('#number').after('<span class="error-message">Company contact number should be exactly 10 digits.</span>'); $('#number').addClass('error'); } if (errorMessages.length > 0) { var errorMessageString = errorMessages.join('<br>'); } else { $(this).unbind('submit').submit(); }
+            e.preventDefault();
+            var errorMessages = [];
+            if ($('#position').val() == '') {
+                errorMessages.push('Position field is required.');
+                $('#position').after('<span class="error-message">Position field is required.</span>');
+                $('#position').addClass('error');
+            }
+            if ($('#cname').val() == '') {
+                errorMessages.push('Company name field is required.');
+                $('#cname').after('<span class="error-message">Company name field is required.</span>');
+                $('#cname').addClass('error');
+            }
+            if ($('#location').val() == '') {
+                errorMessages.push('Location field is required.');
+                $('#location').after('<span class="error-message">Location field is required.</span>');
+                $('#location').addClass('error');
+            }
+            if ($('#category').val() == '') {
+                errorMessages.push('Job category field is required.');
+                $('#category').after('<span class="error-message">Job category field is required.</span>');
+                $('#category').addClass('error');
+            }
+            if ($('#tags').val() == '') {
+                errorMessages.push('Industry tags field is required.');
+                $('#tags').after('<span class="error-message">Industry tags field is required.</span>');
+                $('#tags').addClass('error');
+            }
+            if ($('#min').val() == '') {
+                errorMessages.push('Minimum salary field is required.');
+                $('#min').after('<span class="error-message">Minimum salary field is required.</span>');
+                $('#min').addClass('error');
+            } else if (isNaN($('#min').val())) {
+                errorMessages.push('Minimum salary should be a number.');
+                $('#min').after('<span class="error-message">Minimum salary should be a number.</span>');
+                $('#min').addClass('error');
+            }
+            if ($('#max').val() == '') {
+                errorMessages.push('Maximum salary field is required.');
+                $('#max').after('<span class="error-message">Maximum salary field is required.</span>');
+                $('#max').addClass('error');
+            } else if (isNaN($('#max').val())) {
+                errorMessages.push('Maximum salary should be a number.');
+                $('#max').after('<span class="error-message">Maximum salary should be a number.</span>');
+                $('#max').addClass('error');
+            } else if ($('#max').val() < $('#min').val()) {
+                errorMessages.push('Maximum salary should be greater than or equal to minimum salary.');
+                $('#max').after('<span class="error-message">Maximum salary should be greater than or equal to minimum salary.</span>');
+                $('#max').addClass('error');
+            }
+            if ($('#desc').val() == '') {
+                errorMessages.push('Job description field is required.');
+                $('#desc').after('<span class="error-message">Job description field is required.</span>');
+                $('#desc').addClass('error');
+            }
+            if ($('#url').val() == '') {
+                errorMessages.push('Application URL field is required.');
+                $('#url').after('<span class="error-message">Application URL field is required.</span>');
+                $('#url').addClass('error');
+            }
+            if ($('#email').val() == '') {
+                errorMessages.push('Email field is required.');
+                $('#email').after('<span class="error-message">Email field is required.</span>');
+                $('#email').addClass('error');
+            } else if (!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test($('#email').val())) {
+                errorMessages.push('Please enter a valid email address.');
+                $('#email').after('<span class="error-message">Please enter a valid email address.</span>');
+                $('#email').addClass('error');
+            }
+            if ($('#caddress').val() == '') {
+                errorMessages.push('Company address field is required.');
+                $('#caddress').after('<span class="error-message">Company address field is required.</span>');
+                $('#caddress').addClass('error');
+            }
+            if ($('#linkedin').val() == '') {
+                errorMessages.push('Company LinkedIn field is required.');
+                $('#linkedin').after('<span class="error-message">Company LinkedIn field is required.</span>');
+                $('#linkedin').addClass('error');
+            }
+            if ($('#number').val() == '') {
+                errorMessages.push('Company contact number field is required.');
+                $('#number').after('<span class="error-message">Company contact number field is required.</span>');
+                $('#number').addClass('error');
+            } else if ($('#number').val().length != 10 || isNaN($('#number').val())) {
+                errorMessages.push('Company contact number should be exactly 10 digits.');
+                $('#number').after('<span class="error-message">Company contact number should be exactly 10 digits.</span>');
+                $('#number').addClass('error');
+            }
+            if (errorMessages.length > 0) {
+                var errorMessageString = errorMessages.join('<br>');
+            } else {
+                $(this).unbind('submit').submit();
+            }
         });
-    }); </script>
+    });
+const logoutButton = document.getElementById('logout');
+
+logoutButton.addEventListener('click', () => {
+    fetch('/logout', {
+        method: 'POST',
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/landing.html';
+        } else {
+            alert('Error logging out. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again later.');
+    });
+});
+</script>
+
 
 </html>
