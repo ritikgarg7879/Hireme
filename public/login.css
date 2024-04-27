@@ -2,100 +2,88 @@ body {
     background-image: url("bg2.svg");
     margin: 0;
 }
-button:hover{
+
+button:hover {
     cursor: pointer;
 }
-#navbar{
+
+#navbar {
     height: 100px;
     background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
 }
-#logo{
+
+#logo {
     color: #fff;
     font-family: Poppins;
     font-size: 35px;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin-top: 23px;
-    margin-left: 170px;
-    position: fixed;
 }
-#find-btn{
-    margin-top: 30px;
-    margin-left: 1124px;
-    position: fixed;
+
+#find-btn,
+#employ-btn {
     padding: 11px 22px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
     border-radius: 8px;
-    background: #FFF;
-    border: 0;
-    color: #000;
     font-family: Inter;
     font-size: 14px;
-    font-style: normal;
     font-weight: 600;
     line-height: normal;
 }
 
-#employ-btn{
-    margin-top: 30px;
-    margin-left: 1256px;
-    position: fixed;
-    padding: 11px 22px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 8px;
-    background: #2341D5;
-    border: 0;
-    color: #FFF;
-    font-family: Inter;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+#find-btn {
+    background: #fff;
+    color: #000;
 }
+
+#employ-btn {
+    background: #2341d5;
+    color: #fff;
+}
+
 #login-title {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 187px;
-    position: fixed;
     color: #000;
     font-family: Inter;
     font-size: 30px;
-    font-style: normal;
     font-weight: 600;
     line-height: normal;
 }
 
-#label1, #label2 {
+#label1,
+#label2 {
     color: #000;
     font-family: Inter;
     font-size: 18px;
-    font-style: normal;
     font-weight: 500;
     line-height: normal;
     position: relative;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
+    margin-top: 2px;
 }
 
 #login-form {
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 191px;
     display: flex;
-    flex-direction: column; 
-    position: fixed;
+    flex-direction: column;
+    position: relative;
 }
 
-#companyemail, #companypassword {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     width: 360px;
     padding: 14px 15px;
     border-radius: 7px;
     border: 1px solid #000;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0px 1px 20px 2px rgba(0, 0, 0, 0.10);
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 
 #continue-btn {
@@ -103,14 +91,47 @@ button:hover{
     height: 45px;
     padding: 12px 34px;
     border-radius: 12px;
-    background: #2341D5;
+    background: #2341d5;
     box-shadow: 0px 1px 25px 4px rgba(0, 0, 0, 0.10);
-    color: #FFF;
+    color: #fff;
     font-family: Inter;
     font-size: 18px;
-    font-style: normal;
     font-weight: 600;
     line-height: normal;
     border: 0;
-    margin-top: 15px; /* Add some spacing between the form inputs and the button */
+}
+
+@media only screen and (max-width: 800px) {
+    #logo {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #navbar {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #logo {
+        margin-bottom: 10px;
+    }
+
+    #find-btn,
+    #employ-btn {
+        margin-top: 10px;
+        margin-left: 20px;
+    }
+
+    #login-title,
+    #login-form {
+        margin-left: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: calc(100% - 30px);
+    }
 }
