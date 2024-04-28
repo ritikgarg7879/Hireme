@@ -193,13 +193,14 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="#">HireMe</a>
-        </div>
-        <div class="nav-buttons">
-            <button id="logout">Logout</button>
-        </div>
+    <div id="navbar">
+  <span>
+    <p id="logo"></p>
+  </span>
+  <span>
+    <button id="logout">Logout</button>
+  </span>
+</div>
     </nav> <br><br>
     <h3 align="center">Post a job</h3>
     <table align="center">
@@ -413,6 +414,20 @@
         });
     });
 const logoutButton = document.getElementById('logout');
+const companyNameElement = document.getElementById('logo');
+fetch('/company-name', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    companyNameElement.textContent = data.companyname;
+  })
+  .catch(error => {
+    console.error('Error fetching company name:', error);
+  });
 
 logoutButton.addEventListener('click', () => {
     fetch('/logout', {

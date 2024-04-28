@@ -167,6 +167,15 @@ app.get("/homepage",(req, res) => {
     res.sendFile(__dirname + '/homepage.html');
 });
 
+app.get('/company-name', validateAuthToken, (req, res) => {
+    if (req.session.company) {
+      const companyname = req.session.company.companyname;
+      res.json({ companyname });
+    } else {
+      res.status(401).json({ message: 'Unauthorized' });
+    }
+  });
+
 app.listen(3000, () => {
     console.log("Listening on port 3000");
 });
