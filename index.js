@@ -95,13 +95,13 @@ app.post("/login", async (req, res) => {
             return res.status(401).send('<script>alert("Invalid email or password!"); window.location="/login";</script>');
         }
 
-        // Extract companyname from the retrieved company data
+        
         const companyname = company.companyname;
 
-        // Generate a JWT token with companyname
+        
         const token = jwt.sign({ companyname: companyname }, 'your_secret_key', { expiresIn: '1h' });
 
-        // Store the token in the session or as a cookie
+        
         req.session.token = token;
         req.session.save();
 
@@ -169,30 +169,30 @@ app.get('/company-name', validateAuthToken, (req, res) => {
       res.status(500).send('Error fetching job details');
     }
   });
-// Server-side code
+
 app.post("/update-email", validateAuthToken, async (req, res) => {
     try {
         const { currentEmail, newEmail, password } = req.body;
         const companyname = req.companyname; // Access companyname from the decoded token
 
-        // Verify current email and password
+        
         const company = await db.collection('company').findOne({ companyname: companyname, companyemail: currentEmail, companypassword: password });
         if (!company) {
             return res.status(400).json({ error: "Invalid current email or password." });
         }
 
-        // Check if req.session.company exists and initialize if not
+        
         if (!req.session.company) {
             req.session.company = {};
         }
 
-        // Update the email address
+        
         await db.collection('company').updateOne(
             { companyname: companyname },
             { $set: { companyemail: newEmail } }
         );
 
-        // Set the companyemail property in req.session.company
+    
         req.session.company.companyemail = newEmail;
         await req.session.save();
 
