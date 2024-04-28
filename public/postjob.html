@@ -200,6 +200,9 @@
   <span>
     <button id="logout">Logout</button>
   </span>
+  <span>
+  <button id="update-btn">Update</button>
+</span>
 </div>
     </nav> <br><br>
     <h3 align="center">Post a job</h3>
@@ -406,7 +409,7 @@
             }
             if (errorMessages.length > 0) {
       var errorMessageString = errorMessages.join('<br>');
-      $('.error-container').remove(); // Remove any existing error container
+      $('.error-container').remove(); 
       $(this).before('<div class="error-container">' + errorMessageString + '</div>');
     } else {
       $(this).unbind('submit').submit();
@@ -444,6 +447,11 @@ logoutButton.addEventListener('click', () => {
         console.error('Error:', error);
         alert('An error occurred. Please try again later.');
     });
+});
+const updateButton = document.getElementById('update-btn');
+
+updateButton.addEventListener('click', () => {
+  window.location.href = 'update.html';
 });
 </script>
 

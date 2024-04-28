@@ -3,15 +3,16 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const app = express();
 
 app.use(cookieParser());
 app.use(session({
     secret: 'your_secret_key',
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 10000 // 10 seconds
+        maxAge: 3600000 // 1 hour
     }
 }));
 
@@ -30,12 +31,6 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Error in connecting to database'));
 db.once('open', () => console.log("Connected to database"));
 
-function validateAuthToken(req, res, next) {
-    if (!req.session.company) {
-        return res.redirect('/login');
-    }
-    next();
-}
 
 app.post("/signup", async (req, res) => {
     const { companyname, companycontact, companyemail, companypassword, companylocation } = req.body;
@@ -95,15 +90,21 @@ app.post("/postjob", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const { companyemail, companypassword } = req.body;
-
         const company = await db.collection('company').findOne({ companyemail: companyemail });
         if (!company || company.companypassword !== companypassword) {
             return res.status(401).send('<script>alert("Invalid email or password!"); window.location="/login";</script>');
         }
 
-        req.session.company = company;
+        // Extract companyname from the retrieved company data
+        const companyname = company.companyname;
+
+        // Generate a JWT token with companyname
+        const token = jwt.sign({ companyname: companyname }, 'your_secret_key', { expiresIn: '1h' });
+
+        // Store the token in the session or as a cookie
+        req.session.token = token;
         req.session.save();
-        req.session.createdAt = new Date().getTime(); // Set session creation time
+
         console.log("Session started for:", companyemail);
         return res.status(201).redirect('/postjob');
     } catch (error) {
@@ -135,29 +136,12 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/postjob", validateAuthToken, (req, res) => {
-    if (req.session.company) {
-        const currentTime = new Date().getTime();
-        const sessionTime = req.session.createdAt || currentTime;
-        const sessionDuration = 10000; // 10 seconds in milliseconds
-
-        if (currentTime - sessionTime > sessionDuration) {
-            req.session.destroy((err) => {
-                if (err) {
-                    console.error("Error destroying session:", err);
-                    return res.status(500).send("Error destroying session");
-                }
-                console.log("Session automatically ended after 10 seconds");
-                return res.redirect('/login'); // Redirect to login page after session is destroyed
-            });
-        } else {
-            req.session.createdAt = currentTime; // Update session creation time
             return res.redirect("/postjob.html");
-        }
-    } else {
-        return res.redirect('/login');
-    }
 });
 
+app.get("/update", validateAuthToken, (req, res) => {
+            return res.redirect("/update.html");
+});
 
 app.get("/signup", (req, res) => {
     res.redirect('/signup.html');
@@ -185,7 +169,56 @@ app.get('/company-name', validateAuthToken, (req, res) => {
       res.status(500).send('Error fetching job details');
     }
   });
-  
+// Server-side code
+app.post("/update-email", validateAuthToken, async (req, res) => {
+    try {
+        const { currentEmail, newEmail, password } = req.body;
+        const companyname = req.companyname; // Access companyname from the decoded token
+
+        // Verify current email and password
+        const company = await db.collection('company').findOne({ companyname: companyname, companyemail: currentEmail, companypassword: password });
+        if (!company) {
+            return res.status(400).json({ error: "Invalid current email or password." });
+        }
+
+        // Check if req.session.company exists and initialize if not
+        if (!req.session.company) {
+            req.session.company = {};
+        }
+
+        // Update the email address
+        await db.collection('company').updateOne(
+            { companyname: companyname },
+            { $set: { companyemail: newEmail } }
+        );
+
+        // Set the companyemail property in req.session.company
+        req.session.company.companyemail = newEmail;
+        await req.session.save();
+
+        return res.status(200).json({ message: "Email updated successfully." });
+    } catch (error) {
+        console.error("Error updating email:", error);
+        return res.status(500).json({ error: "Error updating email." });
+    }
+});
+
+function validateAuthToken(req, res, next) {
+    const token = req.session.token;
+    if (!token) {
+        return res.redirect('/login');
+    }
+
+    try {
+        const decoded = jwt.verify(token, 'your_secret_key');
+        req.companyname = decoded.companyname;
+        next();
+    } catch (err) {
+        console.error('Error verifying token:', err);
+        return res.status(401).send('Unauthorized');
+    }
+}
+
 app.listen(3000, () => {
     console.log("Listening on port 3000");
 });
