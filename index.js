@@ -176,6 +176,16 @@ app.get('/company-name', validateAuthToken, (req, res) => {
     }
   });
 
+  app.get('/jobs', async (req, res) => {
+    try {
+      const jobDetails = await db.collection('jobdetail').find({}).toArray();
+      res.json(jobDetails);
+    } catch (error) {
+      console.error('Error fetching job details:', error);
+      res.status(500).send('Error fetching job details');
+    }
+  });
+  
 app.listen(3000, () => {
     console.log("Listening on port 3000");
 });
